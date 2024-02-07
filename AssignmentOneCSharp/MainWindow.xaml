@@ -1,0 +1,93 @@
+﻿<Window x:Class="AssignmentOneCSharp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssignmentOneCSharp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005A9E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#EEE"/>
+            <Setter Property="Foreground" Value="#333"/>
+        </Style>
+
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="#EEE"/>
+            <Setter Property="Foreground" Value="#333"/>
+        </Style>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="MediaCommands.Play" CanExecute="Play_CanExecute" Executed="Play_Executed"></CommandBinding>
+        <CommandBinding Command="MediaCommands.Pause" CanExecute="Pause_CanExecute" Executed="Pause_Executed" />
+        <CommandBinding Command="MediaCommands.Stop" CanExecute="Stop_CanExecute" Executed="Stop_Executed" />
+    </Window.CommandBindings>
+
+    <StackPanel>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open MP3" Click="Open_File_Clicked"/>
+                    <MenuItem Header="_Tag Current MP3" Click="Edit_Tags_Clicked"/>
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+
+                <MenuItem Header="_Media">
+                    <MenuItem Header="_Play" Command="MediaCommands.Play" />
+                    <MenuItem Header="_Pause" Command="MediaCommands.Pause"  />
+                    <MenuItem Header="_Stop" Command="MediaCommands.Stop"  />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <MediaElement x:Name="myMediaPlayer" UnloadedBehavior="Manual" LoadedBehavior="Manual" ></MediaElement>
+
+        <StackPanel>
+            <Grid ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource ButtonStyle}" Content="Open File" Grid.Row="0" Grid.Column="0" Click="Open_File_Clicked"></Button>
+                <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="0" Grid.Column="1" x:Name="fileNameBox"></TextBlock>
+            </Grid>
+
+            <Button Style="{StaticResource ButtonStyle}" Content="Edit Tags" Click="Edit_Tags_Clicked"></Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical">
+            <Button Style="{StaticResource ButtonStyle}" Command="MediaCommands.Play" Content="Play"></Button>
+            <Button Style="{StaticResource ButtonStyle}" Command="MediaCommands.Pause" Content="Pause"></Button>
+            <Button Style="{StaticResource ButtonStyle}" Command="MediaCommands.Stop" Content="Stop"></Button>
+        </StackPanel>
+
+        <StackPanel>
+            <local:NowPlayerControl x:Name="now_playing_control" Visibility="Collapsed"/>
+            <local:TagEditorControl x:Name="tag_editor" Visibility="Collapsed"/>
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>

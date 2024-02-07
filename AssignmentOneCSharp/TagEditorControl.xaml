@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="AssignmentOneCSharp.TagEditorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssignmentOneCSharp"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#666"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="BorderBrush" Value="#CCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="BorderBrush" Value="#005A9E"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="0,0,0,-130">
+        <Label Content="Tag Editor" Style="{StaticResource LabelStyle}" FontSize="14" FontWeight="Bold"/>
+
+        <Label x:Name="LTitle" Content="Title" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="Title" Style="{StaticResource TextBoxStyle}"/>
+
+        <Label x:Name="LArtist" Content="Artist" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="Artist" Style="{StaticResource TextBoxStyle}"/>
+
+        <Label x:Name="LAlbum" Content="Album" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="Album" Style="{StaticResource TextBoxStyle}"/>
+
+        <Label x:Name="LYear" Content="Year" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="Year" Style="{StaticResource TextBoxStyle}"/>
+
+        <Button x:Name="Save" Content="Save" Style="{StaticResource ButtonStyle}" Click="Save_Click"/>
+    </StackPanel>
+</UserControl>
