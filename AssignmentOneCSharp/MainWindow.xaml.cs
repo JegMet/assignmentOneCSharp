@@ -157,6 +157,13 @@ namespace AssignmentOneCSharp
             SaveFileTagsAsync();
         }
 
+        private void Exit_Clicked(object sender, RoutedEventArgs e)
+        {
+            myMediaPlayer.Stop();
+            myMediaPlayer.Source = null;
+            Application.Current.Shutdown();
+        }
+
 
     }
 }
